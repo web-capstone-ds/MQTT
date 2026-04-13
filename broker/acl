@@ -1,0 +1,41 @@
+# DS Vision Monitoring ACL (B1)
+
+# 1. MES Server (Full Control)
+user mes_server
+topic readwrite ds/#
+
+# 2. EAP Vision Equipment #001 (Isolated by ID)
+# eap_vis_{id} -> ds/{id}/# (Write), ds/{id}/control (Read)
+user eap_vis_001
+topic write ds/DS-VIS-001/#
+topic read  ds/DS-VIS-001/control
+
+user eap_vis_002
+topic write ds/DS-VIS-002/#
+topic read  ds/DS-VIS-002/control
+
+user eap_vis_003
+topic write ds/DS-VIS-003/#
+topic read  ds/DS-VIS-003/control
+
+user eap_vis_004
+topic write ds/DS-VIS-004/#
+topic read  ds/DS-VIS-004/control
+
+# 3. Oracle Analysis Server
+# ds/+/oracle (Write), ds/+/lot & ds/+/result (Read)
+user oracle_server
+topic write ds/+/oracle
+topic read  ds/+/lot
+topic read  ds/+/result
+
+# 4. Mobile App (EMERGENCY_STOP & ALARM_ACK only)
+# ds/+/control (Write), ds/# (Read)
+# [MANDATORY] Write permission to ds/+/alarm is EXPLICITLY DENIED (by exclusion)
+user mobile_app
+topic write ds/+/control
+topic read  ds/#
+
+# 5. Historian (Read-only for archival)
+user historian
+topic read ds/#

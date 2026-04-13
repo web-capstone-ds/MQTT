@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: ds-mosquitto-broker
+    ports:
+      - "1883:1883"
+    volumes:
+      # Config / ACL / Passwd
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./acl:/etc/mosquitto/acl:ro
+      - ./passwd:/etc/mosquitto/passwd
+      # Persistence (§2.3 요구사항 반영)
+      - ./data:/var/lib/mosquitto
+    environment:
+      # .env 파일에서 읽어올 비밀번호 예시 필드
+      - MQTT_PASS_EAP_VIS_001=${MQTT_PASS_EAP_VIS_001:-password01}
+      - MQTT_PASS_MES_SERVER=${MQTT_PASS_MES_SERVER:-password02}
+      - MQTT_PASS_ORACLE_SERVER=${MQTT_PASS_ORACLE_SERVER:-password03}
+      - MQTT_PASS_MOBILE_APP=${MQTT_PASS_MOBILE_APP:-password04}
+      - MQTT_PASS_HISTORIAN=${MQTT_PASS_HISTORIAN:-password05}
+    restart: always
+    user: "1883:1883" # Mosquitto default user/group in container

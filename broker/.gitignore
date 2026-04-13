@@ -1,0 +1,6 @@
+# === [ 1. 환경 변수 및 보안 - 가장 중요! ] ===
+.env
+*.env
+# mosquitto 패스워드 파일 (이미지 ae1050.png 설정 기반)
+/etc/mosquitto/passwd
+passwd
