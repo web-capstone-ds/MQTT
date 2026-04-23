@@ -1,0 +1,21 @@
+# ================================
+# MQTT Broker .gitignore
+# ================================
+
+# 비밀번호 파일 — mosquitto_passwd로 생성되는 해시 파일
+broker/passwd
+
+# 실제 환경변수 파일 (.env.example은 커밋, .env는 제외)
+broker/.env
+.env
+
+# Mosquitto 퍼시스턴스 데이터 (런타임 생성)
+broker/data/
+broker/data/*.db
+
+# 로그 파일
+broker/log/
+*.log
+
+# Docker 볼륨 마운트 잔여 파일
+broker/mosquitto.pid
