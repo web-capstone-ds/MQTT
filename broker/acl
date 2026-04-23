@@ -23,11 +23,14 @@ topic write ds/DS-VIS-004/#
 topic read  ds/DS-VIS-004/control
 
 # 3. Oracle Analysis Server
-# ds/+/oracle (Write), ds/+/lot & ds/+/result (Read)
+# ds/+/oracle (Write), ds/+/lot, ds/+/result, ds/+/alarm, ds/+/recipe & ds/+/status (Read)
 user oracle_server
 topic write ds/+/oracle
 topic read  ds/+/lot
 topic read  ds/+/result
+topic read  ds/+/alarm
+topic read  ds/+/recipe
+topic read  ds/+/status
 
 # 4. Mobile App (EMERGENCY_STOP & ALARM_ACK only)
 # ds/+/control (Write), ds/# (Read)
