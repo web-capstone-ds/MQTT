@@ -21,4 +21,3 @@ services:
       - MQTT_PASS_MOBILE_APP=${MQTT_PASS_MOBILE_APP:-password04}
       - MQTT_PASS_HISTORIAN=${MQTT_PASS_HISTORIAN:-password05}
     restart: always
-    user: "1883:1883" # Mosquitto default user/group in container
